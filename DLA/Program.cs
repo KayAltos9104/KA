@@ -41,6 +41,7 @@ namespace DLA
                         (g_x == c_x - 1 && g_y == c_y + 1) |
                         (g_x == c_x + 1 && g_y == c_y - 1))
                     {
+                        globules.Add(new Globule(field));
                         globules.RemoveAt(numb_of_globules - 1);
                         field[g_x, g_y] = 0;
                         globules_i = 0;
