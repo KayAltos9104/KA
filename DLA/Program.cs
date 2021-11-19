@@ -47,6 +47,8 @@ namespace DLA
                         cluster_V++;
                         cluster_parts.Add(new Cluster(field));
                         cluster_parts[cluster_V - 1].GetCoord(out int n_c_x, out int n_c_y);
+                        n_c_x = g_x; n_c_y = g_y;
+                        field[n_c_x, n_c_y] = 1;
                     }
                     else
                     {
