@@ -20,29 +20,33 @@ namespace DLA
             y = _y;
         }
 
-        void Move()
+        public void Move(int[,] field)
         {
             int direction = rnd.Next(0, 4);
             switch (direction)
             {
                 case 0:
                     {
-                        _x = _x + 1;
+                        if (_x + 1 < field.GetLength(0))
+                            _x = _x + 1;
                         break;
                     }
                 case 1:
                     {
-                        _y = _y - 1;
+                        if (_y - 1 > 0)
+                            _y = _y - 1;
                         break;
                     }
                 case 2:
                     {
-                        _x = _x - 1;
+                        if (_x - 1 > 0)
+                            _x = _x - 1;
                         break;
                     }
                 case 3:
                     {
-                        _y = _y + 1;
+                        if (_y + 1 < field.GetLength(1))
+                            _y = _y + 1;
                         break;
                     }
             }
