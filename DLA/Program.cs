@@ -32,21 +32,21 @@ namespace DLA
                 {
                     globules[numb_of_globules - 1].GetCoord(out int g_x, out int g_y);
                     if (globules_i == 1 &&
-                        g_x == c_x + 1 && g_y == c_y + 1 |
-                        g_x == c_x - 1 && g_y == c_y - 1 |
-                        g_x == c_x + 1 && g_y == c_y |
-                        g_x == c_x && g_y == c_y + 1 |
-                        g_x == c_x - 1 && g_y == c_y |
-                        g_x == c_x && g_y == c_y - 1 |
-                        g_x == c_x - 1 && g_y == c_y + 1 |
-                        g_x == c_x + 1 && g_y == c_y - 1)
+                        (g_x == c_x + 1 && g_y == c_y + 1) |
+                        (g_x == c_x - 1 && g_y == c_y - 1) |
+                        (g_x == c_x + 1 && g_y == c_y) |
+                        (g_x == c_x && g_y == c_y + 1) |
+                        (g_x == c_x - 1 && g_y == c_y) |
+                        (g_x == c_x && g_y == c_y - 1) |
+                        (g_x == c_x - 1 && g_y == c_y + 1) |
+                        (g_x == c_x + 1 && g_y == c_y - 1))
                     {
                         globules.RemoveAt(numb_of_globules - 1);
                         field[g_x, g_y] = 0;
                         globules_i = 0;
                         cluster_V++;
                         cluster_parts.Add(new Cluster(field));
-                        cluster_parts[cluster_V].GetCoord(out int n_c_x, out int n_c_y);
+                        cluster_parts[cluster_V - 1].GetCoord(out int n_c_x, out int n_c_y);
                     }
                     else
                     {
@@ -57,7 +57,7 @@ namespace DLA
                     }
                 }
                 Update();
-                Console.ReadKey();
+                //Console.ReadKey();
                 if (i == 1)
                     i++;
             }
