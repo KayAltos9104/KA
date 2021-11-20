@@ -21,7 +21,7 @@ namespace DLA
             int globules_i = 0;
             List<Globule> globules = new List<Globule>(numb_of_globules); // Список глобул
 
-            Console.WriteLine("Введите количество новых частиц."); // Интерфейс
+            Console.WriteLine("Введите количество новых частиц:"); // Интерфейс
             int num_of_particles = Int32.Parse(Console.ReadLine());
 
             while (cluster_parts.Count <= num_of_particles + 1)
@@ -80,7 +80,7 @@ namespace DLA
                     }
                 }
                 Update();
-                Thread.Sleep(1000);
+                //Thread.Sleep(1000);
                 if (i == 1)
                     i++;
             }
