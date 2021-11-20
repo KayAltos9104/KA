@@ -33,93 +33,41 @@ namespace DLA
                     globules[numb_of_globules - 1].GetCoord(out int g_x, out int g_y);
                     if (globules_i == 1)
                     {
-                        if (g_x + 1 < field.GetLength(0) && g_y + 1 < field.GetLength(1))
+                        if (g_x + 1 < field.GetLength(0) && g_y + 1 < field.GetLength(1) && field[g_x + 1, g_y + 1] == 1)
                         {
-                            if (field[g_x + 1, g_y + 1] == 1)
-                            {
-                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
-                            }
-                            else
-                            {
-                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
-                            }
+                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
                         }
-                        else if (g_x - 1 > 0 && g_y - 1 > 0)
+                        else if (g_x - 1 > 0 && g_y - 1 > 0 && field[g_x - 1, g_y - 1] == 1)
                         {
-                            if (field[g_x - 1, g_y - 1] == 1)
-                            {
-                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
-                            }
-                            else
-                            {
-                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
-                            }
+                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
                         }
-                        else if (g_x + 1 < field.GetLength(0))
+                        else if (g_x + 1 < field.GetLength(0) && field[g_x + 1, g_y] == 1)
                         {
-                            if (field[g_x + 1, g_y] == 1)
-                            {
-                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
-                            }
-                            else
-                            {
-                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
-                            }
+                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
                         }
-                        else if (g_y + 1 < field.GetLength(1))
+                        else if (g_y + 1 < field.GetLength(1) && field[g_x, g_y + 1] == 1)
                         {
-                            if (field[g_x, g_y + 1] == 1)
-                            {
-                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
-                            }
-                            else
-                            {
-                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
-                            }
+                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
                         }
-                        else if (g_x - 1 > 0)
+                        else if (g_x - 1 > 0 && field[g_x - 1, g_y] == 1)
                         {
-                            if (field[g_x - 1, g_y] == 1)
-                            {
-                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
-                            }
-                            else
-                            {
-                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
-                            }
+                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
                         }
-                        else if (g_y - 1 > 0)
+                        else if (g_y - 1 > 0 && field[g_x, g_y - 1] == 1)
                         {
-                            if (field[g_x, g_y - 1] == 1)
-                            {
-                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
-                            }
-                            else
-                            {
-                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
-                            }
+                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
                         }
-                        else if (g_x - 1 > 0 && g_y + 1 < field.GetLength(1))
+                        else if (g_x - 1 > 0 && g_y + 1 < field.GetLength(1) && field[g_x - 1, g_y + 1] == 1)
                         {
-                            if (field[g_x - 1, g_y + 1] == 1)
-                            {
-                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
-                            }
-                            else
-                            {
-                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
-                            }
+                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
                         }
-                        else if (g_x + 1 < field.GetLength(0) && g_y - 1 > 0)
+                        else if (g_x + 1 < field.GetLength(0) && g_y - 1 > 0  && field[g_x + 1, g_y - 1] == 1)
                         {
-                            if (field[g_x + 1, g_y - 1] == 1)
-                            {
-                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
-                            }
-                            else
-                            {
-                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
-                            }
+                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
+                        }
+                        else
+                        {
+                            DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
                         }
                     }
                     else
