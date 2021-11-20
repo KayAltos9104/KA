@@ -28,7 +28,6 @@ namespace DLA
             {
                 if (i > 1 && globules_i == 0)
                 {
-                    //numb_of_globules++;
                     globules.Add(new Globule(field));
                     globules_i = 1;
                 }
@@ -88,7 +87,7 @@ namespace DLA
                     }
                 }
                 Update();
-                //Thread.Sleep(1000);
+                Thread.Sleep(500);
                 if (i == 1)
                     i++;
             }

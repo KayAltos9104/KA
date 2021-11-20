@@ -12,7 +12,7 @@ namespace DLA
         {
             _field = field;
             Random(field);
-            if (_x == 4 && _y == 4)
+            if (field[_x, _y] == 1)
                 Random(field);
             _view_in_console = 2;
             _field[_x, _y] = _view_in_console;
