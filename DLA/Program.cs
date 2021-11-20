@@ -21,7 +21,7 @@ namespace DLA
             int globules_i = 0;
             List<Globule> globules = new List<Globule>(numb_of_globules); // Список глобул
 
-            Console.WriteLine("Введите количество новых частиц:"); // Интерфейс
+            Console.WriteLine("Введите количество новых частиц (глобул):"); // Интерфейс
             int num_of_particles = Int32.Parse(Console.ReadLine());
 
             while (cluster_parts.Count <= num_of_particles + 1)
@@ -36,58 +36,30 @@ namespace DLA
                     globules[numb_of_globules - 1].GetCoord(out int g_x, out int g_y);
                     if (globules_i == 1)
                     {
-                        if (g_x + 1 < field.GetLength(0) && g_y + 1 < field.GetLength(1) && field[g_x + 1, g_y + 1] == 1)
+                        if ( (g_x + 1 < field.GetLength(0) && g_y + 1 < field.GetLength(1) && field[g_x + 1, g_y + 1] == 1) ||
+                            (g_x - 1 > 0 && g_y - 1 > 0 && field[g_x - 1, g_y - 1] == 1) ||
+                            (g_x + 1 < field.GetLength(0) && field[g_x + 1, g_y] == 1) ||
+                            (g_y + 1 < field.GetLength(1) && field[g_x, g_y + 1] == 1) ||
+                            (g_x - 1 > 0 && field[g_x - 1, g_y] == 1) ||
+                            (g_y - 1 > 0 && field[g_x, g_y - 1] == 1) ||
+                            (g_x - 1 > 0 && g_y + 1 < field.GetLength(1) && field[g_x - 1, g_y + 1] == 1) ||
+                            (g_x + 1 < field.GetLength(0) && g_y - 1 > 0 && field[g_x + 1, g_y - 1] == 1) )
                         {
-                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts, out int n_globules_i);
-                            globules_i = n_globules_i;
-                        }
-                        else if (g_x - 1 > 0 && g_y - 1 > 0 && field[g_x - 1, g_y - 1] == 1)
-                        {
-                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts, out int n_globules_i);
-                            globules_i = n_globules_i;
-                        }
-                        else if (g_x + 1 < field.GetLength(0) && field[g_x + 1, g_y] == 1)
-                        {
-                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts, out int n_globules_i);
-                            globules_i = n_globules_i;
-                        }
-                        else if (g_y + 1 < field.GetLength(1) && field[g_x, g_y + 1] == 1)
-                        {
-                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts, out int n_globules_i);
-                            globules_i = n_globules_i;
-                        }
-                        else if (g_x - 1 > 0 && field[g_x - 1, g_y] == 1)
-                        {
-                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts, out int n_globules_i);
-                            globules_i = n_globules_i;
-                        }
-                        else if (g_y - 1 > 0 && field[g_x, g_y - 1] == 1)
-                        {
-                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts, out int n_globules_i);
-                            globules_i = n_globules_i;
-                        }
-                        else if (g_x - 1 > 0 && g_y + 1 < field.GetLength(1) && field[g_x - 1, g_y + 1] == 1)
-                        {
-                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts, out int n_globules_i);
-                            globules_i = n_globules_i;
-                        }
-                        else if (g_x + 1 < field.GetLength(0) && g_y - 1 > 0 && field[g_x + 1, g_y - 1] == 1)
-                        {
-                            DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts, out int n_globules_i);
+                            Globule_IntoPartOfCluster(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts, out int n_globules_i);
                             globules_i = n_globules_i;
                         }
                         else
                         {
-                            DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
+                            Globule_Move(g_x, g_y, globules, numb_of_globules);
                         }
                     }
                     else
                     {
-                        DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
+                        Globule_Move(g_x, g_y, globules, numb_of_globules);
                     }
                 }
                 Update();
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 if (i == 1)
                     i++;
             }
@@ -111,7 +83,7 @@ namespace DLA
             Draw();
         }
 
-        static void DuplicatingCode1(List<Globule> globules, int numb_of_globules, int g_x, int g_y, int globules_i, int cluster_V, List<Cluster> cluster_parts, out int n_globules_i)
+        static void Globule_IntoPartOfCluster(List<Globule> globules, int numb_of_globules, int g_x, int g_y, int globules_i, int cluster_V, List<Cluster> cluster_parts, out int n_globules_i)
         {
             globules.RemoveAt(numb_of_globules - 1);
             field[g_x, g_y] = 0;
@@ -124,7 +96,7 @@ namespace DLA
             field[c_x, c_y] = cluster_parts[cluster_V - 1].Pic;
         }
 
-        static void DuplicatingCode2(int g_x, int g_y, List<Globule> globules, int numb_of_globules)
+        static void Globule_Move(int g_x, int g_y, List<Globule> globules, int numb_of_globules)
         {
             field[g_x, g_y] = 0;
             globules[numb_of_globules - 1].Move(field);
