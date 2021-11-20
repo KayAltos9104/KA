@@ -113,7 +113,6 @@ namespace DLA
 
         static void DuplicatingCode1(List<Globule> globules, int numb_of_globules, int g_x, int g_y, int globules_i, int cluster_V, List<Cluster> cluster_parts, out int n_globules_i)
         {
-            //globules.Add(new Globule(field));
             globules.RemoveAt(numb_of_globules - 1);
             field[g_x, g_y] = 0;
             globules_i = 0;
@@ -122,7 +121,7 @@ namespace DLA
             cluster_parts.Add(new Cluster(field));
             cluster_parts[cluster_V - 1].GetCoord(out int c_x, out int c_y);
             c_x = g_x; c_y = g_y;
-            field[c_x, c_y] = 1;
+            field[c_x, c_y] = cluster_parts[cluster_V - 1].Pic;
         }
 
         static void DuplicatingCode2(int g_x, int g_y, List<Globule> globules, int numb_of_globules)
@@ -130,7 +129,7 @@ namespace DLA
             field[g_x, g_y] = 0;
             globules[numb_of_globules - 1].Move(field);
             globules[numb_of_globules - 1].GetCoord(out g_x, out g_y);
-            field[g_x, g_y] = 2;
+            field[g_x, g_y] = globules[numb_of_globules - 1].Pic;
         }
     }
 }

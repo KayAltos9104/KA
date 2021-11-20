@@ -51,5 +51,13 @@ namespace DLA
                     }
             }
         }
+
+        public int Pic
+        {
+            get
+            {
+                return _view_in_console;
+            }
+        }
     }
 }
