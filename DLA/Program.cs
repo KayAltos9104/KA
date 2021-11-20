@@ -65,7 +65,7 @@ namespace DLA
                         {
                             DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
                         }
-                        else if (g_x + 1 < field.GetLength(0) && g_y - 1 > 0  && field[g_x + 1, g_y - 1] == 1)
+                        else if (g_x + 1 < field.GetLength(0) && g_y - 1 > 0 && field[g_x + 1, g_y - 1] == 1)
                         {
                             DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
                         }
@@ -106,7 +106,7 @@ namespace DLA
 
         static void DuplicatingCode1(List<Globule> globules, int numb_of_globules, int g_x, int g_y, int globules_i, int cluster_V, List<Cluster> cluster_parts)
         {
-            globules.Add(new Globule(field));
+            //globules.Add(new Globule(field));
             globules.RemoveAt(numb_of_globules - 1);
             field[g_x, g_y] = 0;
             globules_i = 0;
