@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace DLA
 {
@@ -20,7 +21,10 @@ namespace DLA
             int globules_i = 0;
             List<Globule> globules = new List<Globule>(numb_of_globules); // Список глобул
 
-            while (true)
+            Console.WriteLine("Введите количество новых частиц."); // Интерфейс
+            int num_of_particles = Int32.Parse(Console.ReadLine());
+
+            while (cluster_parts.Count <= num_of_particles + 1)
             {
                 if (i > 1 && globules_i == 0)
                 {
@@ -76,7 +80,7 @@ namespace DLA
                     }
                 }
                 Update();
-                Console.ReadKey();
+                Thread.Sleep(1000);
                 if (i == 1)
                     i++;
             }
