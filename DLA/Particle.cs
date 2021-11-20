@@ -33,13 +33,13 @@ namespace DLA
                     }
                 case 1:
                     {
-                        if (_y - 1 > 0)
+                        if (_y - 1 >= 0)
                             _y = _y - 1;
                         break;
                     }
                 case 2:
                     {
-                        if (_x - 1 > 0)
+                        if (_x - 1 >= 0)
                             _x = _x - 1;
                         break;
                     }
