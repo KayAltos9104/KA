@@ -31,36 +31,104 @@ namespace DLA
                 if (i > 1)
                 {
                     globules[numb_of_globules - 1].GetCoord(out int g_x, out int g_y);
-                    if (globules_i == 1 &&
-                        (g_x == c_x + 1 && g_y == c_y + 1) |
-                        (g_x == c_x - 1 && g_y == c_y - 1) |
-                        (g_x == c_x + 1 && g_y == c_y) |
-                        (g_x == c_x && g_y == c_y + 1) |
-                        (g_x == c_x - 1 && g_y == c_y) |
-                        (g_x == c_x && g_y == c_y - 1) |
-                        (g_x == c_x - 1 && g_y == c_y + 1) |
-                        (g_x == c_x + 1 && g_y == c_y - 1))
+                    if (globules_i == 1)
                     {
-                        globules.Add(new Globule(field));
-                        globules.RemoveAt(numb_of_globules - 1);
-                        field[g_x, g_y] = 0;
-                        globules_i = 0;
-                        cluster_V++;
-                        cluster_parts.Add(new Cluster(field));
-                        cluster_parts[cluster_V - 1].GetCoord(out int n_c_x, out int n_c_y);
-                        n_c_x = g_x; n_c_y = g_y;
-                        field[n_c_x, n_c_y] = 1;
+                        if (g_x + 1 < field.GetLength(0) && g_y + 1 < field.GetLength(1))
+                        {
+                            if (field[g_x + 1, g_y + 1] == 1)
+                            {
+                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
+                            }
+                            else
+                            {
+                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
+                            }
+                        }
+                        else if (g_x - 1 > 0 && g_y - 1 > 0)
+                        {
+                            if (field[g_x - 1, g_y - 1] == 1)
+                            {
+                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
+                            }
+                            else
+                            {
+                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
+                            }
+                        }
+                        else if (g_x + 1 < field.GetLength(0))
+                        {
+                            if (field[g_x + 1, g_y] == 1)
+                            {
+                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
+                            }
+                            else
+                            {
+                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
+                            }
+                        }
+                        else if (g_y + 1 < field.GetLength(1))
+                        {
+                            if (field[g_x, g_y + 1] == 1)
+                            {
+                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
+                            }
+                            else
+                            {
+                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
+                            }
+                        }
+                        else if (g_x - 1 > 0)
+                        {
+                            if (field[g_x - 1, g_y] == 1)
+                            {
+                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
+                            }
+                            else
+                            {
+                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
+                            }
+                        }
+                        else if (g_y - 1 > 0)
+                        {
+                            if (field[g_x, g_y - 1] == 1)
+                            {
+                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
+                            }
+                            else
+                            {
+                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
+                            }
+                        }
+                        else if (g_x - 1 > 0 && g_y + 1 < field.GetLength(1))
+                        {
+                            if (field[g_x - 1, g_y + 1] == 1)
+                            {
+                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
+                            }
+                            else
+                            {
+                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
+                            }
+                        }
+                        else if (g_x + 1 < field.GetLength(0) && g_y - 1 > 0)
+                        {
+                            if (field[g_x + 1, g_y - 1] == 1)
+                            {
+                                DuplicatingCode1(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts);
+                            }
+                            else
+                            {
+                                DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
+                            }
+                        }
                     }
                     else
                     {
-                        field[g_x, g_y] = 0;
-                        globules[numb_of_globules - 1].Move(field);
-                        globules[numb_of_globules - 1].GetCoord(out g_x, out g_y);
-                        field[g_x, g_y] = 2;
+                        DuplicatingCode2(g_x, g_y, globules, numb_of_globules);
                     }
                 }
                 Update();
-                //Console.ReadKey();
+                Console.ReadKey();
                 if (i == 1)
                     i++;
             }
@@ -82,6 +150,27 @@ namespace DLA
         static void Update()
         {
             Draw();
+        }
+
+        static void DuplicatingCode1(List<Globule> globules, int numb_of_globules, int g_x, int g_y, int globules_i, int cluster_V, List<Cluster> cluster_parts)
+        {
+            globules.Add(new Globule(field));
+            globules.RemoveAt(numb_of_globules - 1);
+            field[g_x, g_y] = 0;
+            globules_i = 0;
+            cluster_V++;
+            cluster_parts.Add(new Cluster(field));
+            cluster_parts[cluster_V - 1].GetCoord(out int c_x, out int c_y);
+            c_x = g_x; c_y = g_y;
+            field[c_x, c_y] = 1;
+        }
+
+        static void DuplicatingCode2(int g_x, int g_y, List<Globule> globules, int numb_of_globules)
+        {
+            field[g_x, g_y] = 0;
+            globules[numb_of_globules - 1].Move(field);
+            globules[numb_of_globules - 1].GetCoord(out g_x, out g_y);
+            field[g_x, g_y] = 2;
         }
     }
 }
