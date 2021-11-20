@@ -59,7 +59,7 @@ namespace DLA
                     }
                 }
                 Update();
-                //Thread.Sleep(500);
+                Thread.Sleep(500);
                 if (i == 1)
                     i++;
             }
