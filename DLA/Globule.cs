@@ -23,5 +23,13 @@ namespace DLA
             _x = rnd.Next(0, field.GetLength(0));
             _y = rnd.Next(0, field.GetLength(1));
         }
+
+        public static int Pic
+        {
+            get
+            {
+                return _view_in_console;
+            }
+        }
     }
 }

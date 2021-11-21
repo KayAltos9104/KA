@@ -36,14 +36,14 @@ namespace DLA
                     globules[numb_of_globules - 1].GetCoord(out int g_x, out int g_y);
                     if (globules_i == 1)
                     {
-                        if ( (g_x + 1 < field.GetLength(0) && g_y + 1 < field.GetLength(1) && field[g_x + 1, g_y + 1] == 1) ||
+                        if ((g_x + 1 < field.GetLength(0) && g_y + 1 < field.GetLength(1) && field[g_x + 1, g_y + 1] == 1) ||
                             (g_x - 1 > 0 && g_y - 1 > 0 && field[g_x - 1, g_y - 1] == 1) ||
                             (g_x + 1 < field.GetLength(0) && field[g_x + 1, g_y] == 1) ||
                             (g_y + 1 < field.GetLength(1) && field[g_x, g_y + 1] == 1) ||
                             (g_x - 1 > 0 && field[g_x - 1, g_y] == 1) ||
                             (g_y - 1 > 0 && field[g_x, g_y - 1] == 1) ||
                             (g_x - 1 > 0 && g_y + 1 < field.GetLength(1) && field[g_x - 1, g_y + 1] == 1) ||
-                            (g_x + 1 < field.GetLength(0) && g_y - 1 > 0 && field[g_x + 1, g_y - 1] == 1) )
+                            (g_x + 1 < field.GetLength(0) && g_y - 1 > 0 && field[g_x + 1, g_y - 1] == 1))
                         {
                             Globule_IntoPartOfCluster(globules, numb_of_globules, g_x, g_y, globules_i, cluster_V, cluster_parts, out int n_globules_i);
                             globules_i = n_globules_i;
@@ -72,7 +72,14 @@ namespace DLA
             {
                 for (int j = 0; j < field.GetLength(1); j++)
                 {
+
+                    if (field[i, j] == Cluster.Pic)
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                    if (field[i, j] == Globule.Pic)
+                        Console.ForegroundColor = ConsoleColor.Red;
+
                     Console.Write(field[i, j]);
+                    Console.ResetColor();
                 }
                 Console.WriteLine();
             }
@@ -93,7 +100,7 @@ namespace DLA
             cluster_parts.Add(new Cluster(field));
             cluster_parts[cluster_V - 1].GetCoord(out int c_x, out int c_y);
             c_x = g_x; c_y = g_y;
-            field[c_x, c_y] = cluster_parts[cluster_V - 1].Pic;
+            field[c_x, c_y] = Cluster.Pic;
         }
 
         static void Globule_Move(int g_x, int g_y, List<Globule> globules, int numb_of_globules)
@@ -101,7 +108,7 @@ namespace DLA
             field[g_x, g_y] = 0;
             globules[numb_of_globules - 1].Move(field);
             globules[numb_of_globules - 1].GetCoord(out g_x, out g_y);
-            field[g_x, g_y] = globules[numb_of_globules - 1].Pic;
+            field[g_x, g_y] = Globule.Pic;
         }
     }
 }

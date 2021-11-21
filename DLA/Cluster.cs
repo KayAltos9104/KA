@@ -15,5 +15,13 @@ namespace DLA
             _view_in_console = 1;
             _field[_x, _y] = _view_in_console;
         }
+
+        public static int Pic
+        {
+            get
+            {
+                return _view_in_console;
+            }
+        }
     }
 }
