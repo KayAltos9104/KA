@@ -8,13 +8,14 @@ namespace DLA
 {
     class Globule : Particle
     {
+        static int _view_in_console = 2;
+
         public Globule(int[,] field)
         {
             _field = field;
             Random(field);
             if (field[_x, _y] == 1)
                 Random(field);
-            _view_in_console = 2;
             _field[_x, _y] = _view_in_console;
         }
 

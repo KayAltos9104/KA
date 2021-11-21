@@ -9,8 +9,6 @@ namespace DLA
     abstract class Particle
     {
         private protected Random rnd = new Random();
-        private protected static int _view_in_console;
-
         private protected int _x, _y;
         private protected int[,] _field;
 
